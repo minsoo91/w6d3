@@ -21,7 +21,7 @@
   //
   // }
   View.prototype.step = function () {
-    this.board.tick();
+      this.board.tick();
     this.$el.html("<pre>" + this.board.render() + "</pre>");
   }
   

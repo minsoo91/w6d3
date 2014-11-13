@@ -46,9 +46,9 @@
   Board.makeGrid = function () {
     var grid = [];
 
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 30; i++) {
       grid.push([]);
-      for (var j = 0; j < 10; j++) {
+      for (var j = 0; j < 30; j++) {
         grid[i].push(null);
       }
     }
@@ -61,8 +61,8 @@
   Board.prototype.render = function () {
     var megaString = "";
     console.log(this.snake.segments);
-    for (var i = 0; i < 10; i++) {
-      for (var j = 0; j < 10; j++) {
+    for (var i = 0; i < 30; i++) {
+      for (var j = 0; j < 30; j++) {
         if (this.grid[i][j] === null) {
             megaString += " . ";
         } else if (this.grid[i][j] == "S"){
@@ -79,10 +79,14 @@
     this.grid = Board.makeGrid();
     var that = this;
     this.snake.segments.forEach(function(segment){
-      that.grid[segment.row][segment.col] = "S"
+      if (segment.row >= 0 && segment.row < 30 && segment.col >= 0 && segment.row < 30) {
+        that.grid[segment.row][segment.col] = "S"
+        return true
+      } else {
+        return false
+      }
     })
     //snake has moved, update grid...
   };
-  
 })();
 
